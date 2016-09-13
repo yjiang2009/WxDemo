@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        applicationId "net.sourceforge.simcpux"
+        minSdkVersion 9
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+
+
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+        }
+        tianqi {
+            storeFile file("tianqi_key.key")
+            storePassword "2345tianqi"
+            keyAlias "tianqi_key"
+            keyPassword "2345tianqi"
+        }
+
+    }
+
+
+    buildTypes {
+
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.+'
+    compile files('libs/libammsdk.jar')
+    compile files('libs/okhttp-3.4.1.jar')
+    compile files('libs/okio-1.6.0.jar')
+}
