@@ -23,7 +23,6 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -132,13 +131,6 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
                 .url("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" +
                         APP_ID + "&secret=" + SECRET + "&code=" + code + "&grant_type=authorization_code")
                 .build();
-        /*Request re=new Request.Builder()
-                .url("https://api.weixin.qq.com/sns/oauth2/access_token")
-                .addHeader("appid", APP_ID)
-                .addHeader("secret", SECRET)
-                .addHeader("code", code)
-                .addHeader("grant_type", "authorization_code")
-                .build();*/
         mOKHttpClient.newCall(re).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
