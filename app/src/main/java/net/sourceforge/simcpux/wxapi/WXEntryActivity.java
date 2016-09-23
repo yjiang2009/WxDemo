@@ -2,14 +2,12 @@ package net.sourceforge.simcpux.wxapi;
 
 import android.os.Handler;
 import android.os.Message;
-import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.jy.wxtest.wxdemo.MainActivity;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
@@ -21,11 +19,11 @@ import net.sourceforge.simcpux.R;
 
 import java.io.IOException;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import usercenterokhttp3.Call;
+import usercenterokhttp3.Callback;
+import usercenterokhttp3.OkHttpClient;
+import usercenterokhttp3.Request;
+import usercenterokhttp3.Response;
 
 public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHandler {
 
@@ -96,7 +94,7 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
                         SendAuth.Resp newResp = (SendAuth.Resp) resp;
 
                         //获取微信传回的code
-                        String code = newResp.state;
+                        String code = newResp.code;
                         //就在这个地方，用网络库什么的或者自己封的网络api，发请求去咯，注意是get请求
                         getInfo(code);
                         break;
@@ -118,7 +116,7 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            String s = (String) msg.obj;
+            //String s = (String) msg.obj;
             Toast.makeText(WXEntryActivity.this, "sss", Toast.LENGTH_LONG).show();
         }
     };
